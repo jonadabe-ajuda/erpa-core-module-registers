@@ -1,0 +1,122 @@
+package br.com.erpa.infra;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import br.com.erpa.application.builderProducts;
+import br.com.erpa.domain.entity.ProductsEntity;
+import br.com.erpa.domain.model.Produtcts;
+import br.com.erpa.domain.repository.RepositoryProducts;
+
+/**
+ * Repository customers with jpa used in mysql
+ *  
+ * @author jonadabe
+ * @param  methods Constructor RepositoryProducts
+ * @param  methods insertProducts ProductsEntity
+ * @param  methods updateProducts ProductsEntity
+ * @param  methods deleteProducts ProductsEntity
+ * @param  methods findByCustomer Strng cpf
+ * @param  methods convertToCustomerEntity Customers
+ * @param  methods convertToCustomer CustomersEntity
+ * @return findByCustomer CustomerEntity
+ * @return listaAllCustomers List<CustomersEntity>
+ */
+public class RepositoryProductsMysql implements RepositoryProducts {
+
+	private final String unitPersistence;
+	
+	public RepositoryProductsMysql(String unitPersistence) {
+		this.unitPersistence = unitPersistence;
+	}	
+	
+
+	@Override
+	public void insertProducts(ProductsEntity customersEntity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void updateProducts(ProductsEntity customersEntity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void deleteProducts(ProductsEntity customersEntity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public ProductsEntity findByProducts(String cpf) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<ProductsEntity> listaAllProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+	
+	private Produtcts bankFindByCustomer(EntityManager em, String cpf) {
+		String sql = "SELECT customers FROM Customers customers where customers.cpf = :cpf ";
+		Query query = em.createQuery(sql);
+		query.setParameter("cpf",cpf);
+		query.setMaxResults(1);
+		return (Produtcts) query.getSingleResult();		
+	}
+	
+	private ProductsEntity convertToCustomerEntity( Produtcts customer ) {
+		ProductsEntity customersEntity = new builderProducts()
+		   .withCPFName(customer.getCpf(), customer.getName())
+		   .addressComplete(customer.getStreet(), 
+							customer.getNumber(), 
+							customer.getDistrict(),
+							customer.getCity(),
+				   			customer.getState(),
+				   			customer.getZipCode())
+		   .create();		
+		return customersEntity;
+	}
+	
+	private Produtcts convertToCustomer( ProductsEntity customerEntity ) {
+		Produtcts customer = new Produtcts();
+		customer.setCpf(customerEntity.getCpf().getNumber());
+		customer.setName(customerEntity.getName());
+		customer.setStreet(customerEntity.getAddress().getStreet());
+		customer.setNumber(customerEntity.getAddress().getNumber());
+		customer.setDistrict(customerEntity.getAddress().getDistrict());
+		customer.setCity(customerEntity.getAddress().getCity());
+		customer.setState(customerEntity.getAddress().getState());
+		customer.setZipCode(customerEntity.getAddress().getZipCode());
+		return customer;
+	}
+	
+	
+	private EntityManagerFactory entityManagerFactory() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(unitPersistence);
+		return emf; 
+	}	
+	
+	
+
+}

@@ -1,0 +1,28 @@
+package br.com.erpa.application.command;
+
+import br.com.erpa.application.dto.ProductsDTO;
+import br.com.erpa.domain.entity.ProductsEntity;
+import br.com.erpa.domain.repository.RepositoryProducts;
+
+/**
+ * Update products
+ *  
+ * @author jonadabe
+ * @param  methods Constructor RepositoryCustomer
+ * @param  methods execute ProductsDTO
+ */
+public class DeleteCustomer {
+	
+	private final RepositoryProducts repositoryProducts;
+
+	public DeleteCustomer(RepositoryProducts repositoryCustomer) {
+		this.repositoryProducts = repositoryCustomer;
+	}
+	
+	public void execute ( ProductsDTO customerDTO ) {
+		ProductsEntity productsEntity = new ProductsEntity(customerDTO.getCodigo(), customerDTO.getName(),
+				 											customerDTO.getIsActive(), customerDTO.getValueSale());
+		repositoryProducts.deleteProducts(productsEntity);
+	}
+
+}

@@ -1,0 +1,29 @@
+package br.com.erpa.application.command;
+
+import br.com.erpa.application.dto.ProductsDTO;
+import br.com.erpa.domain.entity.ProductsEntity;
+import br.com.erpa.domain.repository.RepositoryProducts;
+import br.com.erpa.domain.vo.CPF;
+
+/**
+ * Update customers
+ *  
+ * @author jonadabe
+ * @param  methods Constructor RepositoryCustomer
+ * @param  methods execute CustomerDTO
+ * @return CustomerDTO
+ */
+public class DeleteCustomer {
+	
+	private final RepositoryProducts repositoryCustomer;
+
+	public DeleteCustomer(RepositoryProducts repositoryCustomer) {
+		this.repositoryCustomer = repositoryCustomer;
+	}
+	
+	public void execute ( ProductsDTO customerDTO ) {
+		ProductsEntity customersEntity = new ProductsEntity(new CPF(customerDTO.getCpf()), null);
+		repositoryCustomer.deleteCustomer(customersEntity);
+	}
+
+}
