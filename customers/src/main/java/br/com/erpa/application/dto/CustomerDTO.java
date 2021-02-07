@@ -48,7 +48,7 @@ public class CustomerDTO {
 	
 	@NotNull
 	@NotEmpty
-	@Size(min = 8,max = 8,message = "Address field zipCode equal 8")		
+	@Size(min = 8,max = 8,message = "CustomerDTO field zipCode equal 8")		
 	private String zipCode;
 	
 	public CustomerDTO() {}
@@ -61,7 +61,7 @@ public class CustomerDTO {
 			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field district between 5 and 100") String district,
 			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field city between 5 and 100") String city,
 			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field state between 5 and 100") String state,
-			@NotNull @NotEmpty @Size(min = 8, max = 8, message = "Address field zipCode equal 8") String zipCode) {
+			@NotNull @NotEmpty @Size(min = 8, max = 8, message = "CustomerDTO field zipCode equal 8") String zipCode) {
 		super();
 		this.name = name;
 		this.cpf = cpf;
@@ -74,27 +74,6 @@ public class CustomerDTO {
 	}
 	
 	
-	public CustomerDTO(
-			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field name between 5 and 100") String name,
-			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field street between 5 and 100") String street,
-			@NotNull Integer number,
-			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field district between 5 and 100") String district,
-			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field city between 5 and 100") String city,
-			@NotNull @NotEmpty @Size(min = 5, max = 100, message = "CustomerDTO field state between 5 and 100") String state,
-			@NotNull @NotEmpty @Size(min = 8, max = 8, message = "Address field zipCode equal 8") String zipCode) {
-		super();
-		this.name = name;
-		this.street = street;
-		this.number = number;
-		this.district = district;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-	}
-
-
-
-
 	public String getName() {
 		return name;
 	}
