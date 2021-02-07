@@ -3,6 +3,7 @@ package br.com.erpa.application;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,7 @@ class SaveCustomerTest {
 		customerDTO.setCpf("0123456789");
 		Exception exception = assertThrows(ExceptionValidFields.class, () -> saveCustomer.execute(customerDTO));
 		assertTrue(exception.getMessage().contains("Error"));
+		
 	}
 	
 	@Test
@@ -53,12 +55,31 @@ class SaveCustomerTest {
 		customerDTO.setName("Maia");
 		Exception exception = assertThrows(ExceptionValidFields.class, () -> saveCustomer.execute(customerDTO));
 		assertTrue(exception.getMessage().contains("Error"));
-		
+				
 		customerDTO.setStreet("Rua");
 		exception = assertThrows(ExceptionValidFields.class, () -> saveCustomer.execute(customerDTO));
 		assertTrue(exception.getMessage().contains("Error"));		
 				
 	}
+	
+	@Test
+	void validFieldWithNameMaxSize() {
+		CustomerDTO customerDTO = MocksPopuled.MockCustomerDTO(); 				
+		customerDTO.setName(RandomStringUtils.random(102));
+		Exception exception = assertThrows(ExceptionValidFields.class, () -> saveCustomer.execute(customerDTO));
+		assertTrue(exception.getMessage().contains("Error"));
+				
+	}
+	
+	@Test
+	void validFieldWithStreetMaxSize() {
+		CustomerDTO customerDTO = MocksPopuled.MockCustomerDTO(); 				
+		customerDTO.setStreet(RandomStringUtils.random(106));
+		Exception exception = assertThrows(ExceptionValidFields.class, () -> saveCustomer.execute(customerDTO));
+		assertTrue(exception.getMessage().contains("Error"));
+				
+	}	
+	
 	
 	@Test
 	void saveWithFieldOK () {
