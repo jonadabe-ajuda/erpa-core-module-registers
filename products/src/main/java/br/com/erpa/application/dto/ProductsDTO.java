@@ -17,12 +17,12 @@ public class ProductsDTO {
 
 	@NotNull
 	@NotEmpty
-	@Size(min = 2,max = 50,message = "CustomerDTO field name between 2 and 50")
+	@Size(min = 3,max = 50,message = "ProductsDTO field name between 2 and 20")
 	private String codigo;
 	
 	@NotNull
 	@NotEmpty
-	@Size(min = 5,max = 100,message = "CustomerDTO field number equal 11")
+	@Size(min = 5,max = 100,message = "ProductsDTO field name between 5 and 100")
 	private String name;
 	
 	@NotNull	
