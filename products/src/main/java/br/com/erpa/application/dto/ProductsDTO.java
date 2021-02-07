@@ -17,7 +17,7 @@ public class ProductsDTO {
 
 	@NotNull
 	@NotEmpty
-	@Size(min = 2,max = 50,message = "CustomerDTO field name between 2 and 50")
+	@Size(min = 3,max = 50,message = "CustomerDTO field name between 2 and 50")
 	private String codigo;
 	
 	@NotNull

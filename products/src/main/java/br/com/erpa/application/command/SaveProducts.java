@@ -3,7 +3,9 @@ package br.com.erpa.application.command;
 import br.com.erpa.application.BuilderProducts;
 import br.com.erpa.application.dto.ProductsDTO;
 import br.com.erpa.domain.entity.ProductsEntity;
+import br.com.erpa.domain.exception.ExceptionValidFields;
 import br.com.erpa.domain.repository.RepositoryProducts;
+import br.com.erpa.validator.ValidatorBean;
 
 /**
  * Save Products
@@ -22,6 +24,7 @@ public class SaveProducts {
 	}
 	
 	public void execute ( ProductsDTO productsDTO ) {
+		if ( !ValidatorBean.Validator().validate(productsDTO).isEmpty() ) throw new ExceptionValidFields("Error valid fields",null);
 		ProductsEntity productorsEntity = new BuilderProducts()
 											.withProduct(productsDTO.getCodigo(), 
 														 productsDTO.getName(),
