@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
 /**
  * Entity of domain with field cpf single
  * Relationship with table CPF and Address
@@ -35,6 +36,10 @@ public class CustomersEntity {
 	
 	public void addAddress(String street, int number, String district, String city, String state, String zipCode) {
 		this.address = new Address(street, number, district, city, state, zipCode);
+	}
+	
+		public void setName(String name) {
+		this.name = name;
 	}
 
 	public CPF getCpf() {

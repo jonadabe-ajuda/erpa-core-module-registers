@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import br.com.erpa.application.builderCustomers;
+import br.com.erpa.application.BuilderCustomers;
 import br.com.erpa.domain.entity.CustomersEntity;
 import br.com.erpa.domain.model.Customers;
 import br.com.erpa.domain.repository.RepositoryCustomer;
@@ -98,7 +98,7 @@ public class RepositoryCustomersMysql implements RepositoryCustomer {
 	}
 	
 	private CustomersEntity convertToCustomerEntity( Customers customer ) {
-		CustomersEntity customersEntity = new builderCustomers()
+		CustomersEntity customersEntity = new BuilderCustomers()
 		   .withCPFName(customer.getCpf(), customer.getName())
 		   .addressComplete(customer.getStreet(), 
 							customer.getNumber(), 

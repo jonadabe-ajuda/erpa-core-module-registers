@@ -1,9 +1,11 @@
 package br.com.erpa.application.command;
 
-import br.com.erpa.application.builderCustomers;
+import br.com.erpa.application.BuilderCustomers;
 import br.com.erpa.application.dto.CustomerDTO;
 import br.com.erpa.domain.entity.CustomersEntity;
+import br.com.erpa.domain.exception.ExceptionValidFields;
 import br.com.erpa.domain.repository.RepositoryCustomer;
+import br.com.erpa.validator.ValidatorBean;
 
 /**
  * Update customers
@@ -22,7 +24,8 @@ public class UpdateCustomer {
 	}
 	
 	public void execute ( CustomerDTO customerDTO ) {
-		CustomersEntity customersEntity = new builderCustomers()
+		if ( !ValidatorBean.Validator().validate(customerDTO).isEmpty() ) throw new ExceptionValidFields("Error valid fields",null);
+		CustomersEntity customersEntity = new BuilderCustomers()
 										   .withCPFName(customerDTO.getCpf(), customerDTO.getName())
 										   .addressComplete(customerDTO.getStreet(), 
 												   			customerDTO.getNumber(), 
