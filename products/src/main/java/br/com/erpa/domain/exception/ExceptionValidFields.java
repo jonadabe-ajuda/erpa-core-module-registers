@@ -1,5 +1,6 @@
 package br.com.erpa.domain.exception;
 
+
 public class ExceptionValidFields  extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
@@ -8,6 +9,5 @@ public class ExceptionValidFields  extends RuntimeException {
 		super(message,cause);
 	}
 	
-
 
 }

@@ -1,5 +1,6 @@
 package br.com.erpa.application;
 
+
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,11 +50,11 @@ class SaveProductsTest {
 	@Test
 	void validFieldNameSize() {
 		ProductsDTO productsDTO = MocksPopuled.MockProductDTO();				
-		productsDTO.setCodigo("4");
+		productsDTO.setName("4");
 		Exception exception = assertThrows(ExceptionValidFields.class, () -> saveProducts.execute(productsDTO));
 		assertTrue(exception.getMessage().contains("Error"));
 		
-		productsDTO.setCodigo(RandomStringUtils.random(102));
+		productsDTO.setName(RandomStringUtils.random(102));
 		exception = assertThrows(ExceptionValidFields.class, () -> saveProducts.execute(productsDTO));
 		assertTrue(exception.getMessage().contains("Error"));		
 				
